@@ -1,0 +1,42 @@
+.dropbtn {
+  background-color: whitesmoke;
+  color: white;
+  padding: 10px;
+  font-size: 17px;
+  border: none;
+  transition: all 3500ms ease-in-out;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  transition: all 3500ms ease-in-out;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  margin: 0px 0px 0px -150px;
+  background-color: #0f0c29;
+  min-width: 250px;
+  min-height: 200px;
+  z-index: 1;
+  transition: all 3500ms ease-in-out;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 50px;
+  text-align: center;
+  margin: 0px 0px 0px -5px;
+  text-decoration: none;
+  display: block;
+  transition: all 3500ms ease-in-out;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  transition: all 4500ms ease-in-out;
+}
+.dropdown-content:hover{
+  color: black;
+}

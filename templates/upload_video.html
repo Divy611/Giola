@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body%}
+<title>Upload Your Video</title>
+<div class="bg-gray-100 p-8">
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" name="title" class="form-control" id="title" required style="border-radius: 2px 2px; width: 550px;">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Description</label>
+            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." style="width: 600px;"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black" for="file_input">Select Video file</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-white dark:border-gray-600 dark:placeholder-gray-400" style="width: 600px;" id="file_input" type="file">
+        </div>
+        <div class="mb-3">
+            <label for="thumb" class="form-label">Select Thumbnail</label>
+            <input type="file" name="thumbnail_img" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-white dark:border-gray-600 dark:placeholder-gray-400" style="width: 600px;" id="thumb" accept="image/*" required>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Select Category</label>
+            <select class="form-control" name="category">
+                <option>--Select Category--</option>
+                <option>Science & Technology</option>
+                <option>Fashion</option>
+                <option>Food</option>
+                <option>Education</option>
+                <option>Blogs</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="color: black;">Upload</button>
+    </form>
+</div>
+
+{% endblock %}

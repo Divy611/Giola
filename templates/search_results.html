@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<title>Search Results: Giola</title>
+<section class="bg-white">
+    <div class="container px-6 py-10 mx-auto">
+        {% if user_obj %}
+        <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-black">Search Results:{{search_query}}</h1>
+        {% for user in user_obj %}
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            <div class="lg:flex">
+                <a href="{% url 'creator_profile' user.username %}">
+                    <img class="object-cover w-full h-56 rounded-lg lg:w-65" src="{% static user.userdata.profile_pic.url %}">
+                </a>
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                    <a href="{% url 'creator_profile' user.username %}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-black ">
+                        {{user.username}}
+                    </a>
+                    <a href="{% url 'creator_profile' user.username %}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-black ">
+                        <div class="card-body">
+                            <p class="leading-relaxed">{{user.userdata.about|truncatewords:6}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="container">
+        <h5>No Results Found.</h5>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

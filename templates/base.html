@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="{% static 'Following.png'%}">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="{% static 'sbar.css'%}">
+  <link rel="stylesheet" href="{% static 'scrlbr.css'%}">
+  <link rel="stylesheet" href="{% static 'ss.css'%}">
+  <link rel="stylesheet" href="{% static 'ddm.css'%}">
+  <link rel="stylesheet" href="{% static 'sidebar.css'%}">
+  <link rel="stylesheet" href="{% static 'crprof.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <script src="{% static 'theme.js'%}"></script>
+  <script src="{% static 's1.js'%}"></script>
+  <script src="{% static 'searchbar.js'%}"></script>
+  <script src="{%static 's2.js'%}"></script>
+  <script src="{%static 's3.js'%}"></script>
+  <script src="{%static 'rl.js'%}"></script>
+  <script src="{%static 'ytjs.js'%}"></script>
+</head>
+<header class="text-gray-600 body-font bg-black">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <div id="mySidebar" class="sidebar" style="background-color: black;">
+      <div class="title">
+        <div>
+          <img src="{% static 'Following1.png'%}" height="50px" width="50px">
+          <a href="{% url 'home' %}"
+            style="color: white; font-weight:bolder; font-size: xx-large; font-family:'Times New Roman', Times, serif;">Giola</a>
+        </div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          style="color: white; background-color: black;">&times;</a>
+      </div>
+      <a href="{% url 'home' %}" style="color: white; font-size: large;"><i
+          class="fa-solid fa-house-user"></i>&nbsp;Home</a>
+      <a href="{% url 'trending' %}" style="color: white; font-size: large;"><i
+          class="fa-solid fa-arrow-trend-up"></i>&nbsp;Trending</a>
+      <a href="{% url 'subscriptions' %}" style="color: white; font-size:large;">&nbsp;Subscriptions</a>
+      <hr>
+      <a href="{% url 'library' %}" style="color: white; font-size: large;"><i class="fa-solid fa-arrow-tren-up"></i>My
+        Library</a>
+      <a href="{% url 'dashboard' request.user %}" style="color: white; font-size: large;"><i
+          class="fa-regular fa-circle-play"></i>&nbsp;My Videos</a>
+      <a href="{% url 'library' %}" style="color: white; font-size: large;"><i
+          class="fa-solid fa-bookmark"></i>&nbsp;Saved Videos</a>
+      <hr>
+      <h1 style="color: white; font-size: medium;">&nbsp;&nbsp;&nbsp;Categories</h1>
+      <a href="{% url 'category1' %}" style="color: white; font-size: large;">&nbsp;Category</a>
+      <a href="{% url 'category2' %}" style="color: white; font-size: large;">&nbsp;Category</a>
+      <a href="{% url 'category3' %}" style="color: white; font-size: large;">&nbsp;Category</a>
+      <a href="{% url 'category4' %}" style="color: white; font-size: large;">&nbsp;Category</a>
+      <a href="{% url 'category5' %}" style="color: white; font-size: large;">&nbsp;Category</a>
+      <hr>
+      <a href="{% url 'settings' %}" style="color: white; font-size: large;"><i
+          class="fa-solid fa-gear"></i>&nbsp;Settings</a>
+      <a href="{% url 'helpndfaqs' %}" style="color: white; font-size: large;"><i
+          class="fa-regular fa-circle-question"></i>&nbsp;Help</a>
+      <a href="{% url 'termsnconditions' %}" style="color: white; font-size: large;"><i
+          class="fa-solid fa-asterisk"></i>&nbsp;Terms and Conditions</a>
+      <a href="{% url 'privacypolicy' %}" style="color: white; font-size: large;">Privacy Policy</a>
+      <p class="text-sm text-white sm:ml-4 sm:pl-4 sm:py-2 sm:mt-0 mt-4" style="font-size: small;">© 2022 Giola </p>
+      <br>
+    </div>
+    <div id="main">
+      <button class="openbtn" onclick="openNav(this)" style="color: white; background-color: black;">&#9776;</button>
+    </div>
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+      style="margin: 7px -100px -10px -17px;" href="{% url 'home' %}">
+      <img src="{% static 'Following1.png'%}" height="80px" width="80px">
+      <div class="hehe" class="ml-3 text-xl"
+        style="color: white; font-weight:bolder; font-size: xx-large; font-family:'Times New Roman', Times, serif;">
+        Giola</div>
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <form action="{% url 'search' %}" class="d-flex" id="myForm" method="get" placeholder="Search....">
+        {% csrf_token %}
+        <input class="search__input" name="search_query" type="search" placeholder="Search..." aria-label="Search">
+      </form>
+    </nav>
+    {% if user.is_authenticated %}
+    <style>
+      .search__input {
+        margin: 0px 65px 0px -265px;
+        position: center;
+        width: 485%;
+        padding: 18px 60px;
+        background-color: transparent;
+        transition: transform 200ms ease-in-out;
+        font-size: 15px;
+        line-height: 18px;
+        color: white;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-position: 110% center;
+        border-radius: 50px;
+        border: 1px solid white;
+        transition: all 300ms ease-in-out;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .search__input::placeholder {
+        margin: 0px -10px 0px 10px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 4.5px;
+      }
+
+      .search__input:hover,
+      .search__input:focus {
+        padding: 0px 20px;
+        outline: 0;
+        border: 37px solid transparent;
+        border-bottom: 7px solid white;
+        border-radius: 0;
+        background-position: 100% center;
+      }
+    </style>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+      <button type="button" class="dropbtn" data-bs-toggle="dropdown" data-bs-display="static"
+        aria-expanded="false">@{{request.user}}</button>
+      <div class="dropdown-content">
+        <ul>
+          <li><a href="{% url 'profile' request.user %}"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;My Profile</a></li>
+          <li><a href="{% url 'wallet' %}"><i class="fa-solid fa-wallet"></i>&nbsp;&nbsp;My Wallet</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'dashboard' request.user %}"><i class="fa-solid fa-chart-line"></i>&nbsp;&nbsp;Creator
+              Dashboard</a></li>
+          <li><a href="{% url 'dashboard' request.user %}"><i class="fa-solid fa-tower-broadcast"></i>&nbsp;Go Live</a>
+          </li>
+          {% endif %}
+          <li><a href="{% url 'settings' %}"><i class="fa-solid fa-gear"></i>&nbsp;&nbsp;Settings</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;&nbsp;Logout</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      </button>
+    </div>
+    {% else %}
+    <a href="{% url 'loginpg' %}"><button
+        class="text-white py-2 px-8 focus:outline-none hover:bg-yellow-500 rounded text-lg">Login</button></a>
+    &nbsp;&nbsp;
+    <a href="{% url 'signup' %}"><button
+        class="text-white py-2 px-7 focus:outline-none hover:bg-green-500 rounded text-lg">Sign Up</button></a>
+    {% endif %}
+  </div>
+</header>
+<header class="text-gray-600 body-font bg-black">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <span class="ml-3 text-xl"></span>
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <a class="mr-5 text-white" href="{% url 'home' %}">Home</a>
+      <a class="mr-5 text-white" href="{% url 'trending' %}">Trending</a>
+      <a class="mr-5 text-white" href="{% url 'category1' %}">Software</a>
+      <a class="mr-5 text-white" href="{% url 'category2' %}">Business</a>
+      <a class="mr-5 text-white" href="{% url 'category3' %}">Cooking</a>
+      <a class="mr-5 text-white" href="{% url 'category4' %}">Music</a>
+      <a class="mr-5 text-white" href="{% url 'category5' %}">Technology</a>
+    </nav>
+  </div>
+</header>
+{% block body%}
+{% endblock %}
+</body>
+
+</html>
